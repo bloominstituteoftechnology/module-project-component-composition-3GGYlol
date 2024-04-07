@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default function Figure({ imageURL, caption }) {
+export default function Figure({ image, author, date }) {
     return (
       <figure>
-        <img src={imageURL} />
-        <figcaption>Awesome pic taken on {caption}</figcaption>
+        <img src={image} />
+        <figcaption>
+            The Photo of the Day by {author} on {date}
+        </figcaption>
       </figure>
     )
   }
-  

@@ -5,44 +5,32 @@ import Card from './Card'
 const api_key = 'DEMO_KEY'
 const URL = `https://api.nasa.gov/planetary/apod?api_key=${api_key}`
 
-function App() {
-  const [apod, setApod] = useState()
+export default function App() {
+  const [data, setData] = useState()
 
   useEffect(() => {
-    function fetchPhoto() {
+    function fetchAPOD() {
       axios.get(URL)
       .then(res => {
-        console.log(res.data)
-        setApod(res.data)
+        setData(res.data)
      })
      .catch(err => {
         console.log(err.message)
      })
   }
-  // fetchPhoto()
-  setApod({
-      "copyright": "\nBen Cooper\n",
-      "date": "2024-04-07",
-      "explanation": "Will the sky be clear enough to see the eclipse? This question is already on the minds of many North Americans hoping to see tomorrow's solar eclipse.  This question was also on the mind of many people attempting to see the total solar eclipse that crossed North America in August 2017.  Then, the path of total darkness shot across the mainland of the USA from coast to coast, from Oregon to South Carolina -- but, like tomorrow's event, a partial eclipse occurred above most of North America.  Unfo...",
-      "hdurl": "https://apod.nasa.gov/apod/image/2404/EclipseWyoming_Cooper_960.jpg",
-      "media_type": "image",
-      "service_version": "v1",
-      "title": "A Total Solar Eclipse over Wyoming",
-      "url": "https://apod.nasa.gov/apod/image/2404/EclipseWyoming_Cooper_960.jpg"
-    })
+    fetchAPOD()
  }, [])
  
- if (!apod) return 'Fetching Photo of the Day...'
+ if (!data) return <p>Fetching data...</p>
   return (
   <section>
     <Card
-      title={apod.title}
-      text={apod.explanation}
-      imageURL={apod.url}
-      date={apod.date}
+      title={data.title}
+      text={data.explanation}
+      image={data.url}
+      author={data.copyright}
+      date={data.date}
     />
    </section>
   )
 }
-
-export default App

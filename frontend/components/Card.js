@@ -1,15 +1,13 @@
 import React from 'react'
 import Figure from './Figure'
 
-export default function Card({ title, text, imageURL, date }) {
+export default function Card({ title, text, image, author, date }) {
     return (
       <div className='card'>
         <h2>{title}</h2>
         <p>{text}</p>
-        <Figure
-          imageURL={imageURL}
-          caption={date} 
-          />
+        <Figure image={image} author={author}date={date} />
       </div>
     )
   }
+  
